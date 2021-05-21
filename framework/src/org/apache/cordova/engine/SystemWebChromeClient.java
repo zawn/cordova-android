@@ -211,6 +211,7 @@ public class SystemWebChromeClient extends WebChromeClient {
         return mVideoProgressView;
     }
 
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @Override
     public boolean onShowFileChooser(WebView webView, final ValueCallback<Uri[]> filePathsCallback, final WebChromeClient.FileChooserParams fileChooserParams) {
         // Check if multiple-select is specified
@@ -258,6 +259,7 @@ public class SystemWebChromeClient extends WebChromeClient {
         return true;
     }
 
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void onPermissionRequest(final PermissionRequest request) {
         LOG.d(LOG_TAG, "onPermissionRequest: " + Arrays.toString(request.getResources()));

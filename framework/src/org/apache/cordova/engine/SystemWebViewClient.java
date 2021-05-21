@@ -18,6 +18,7 @@
 */
 package org.apache.cordova.engine;
 
+import android.annotation.TargetApi;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
@@ -25,6 +26,7 @@ import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.net.http.SslError;
+import android.os.Build;
 import android.webkit.ClientCertRequest;
 import android.webkit.HttpAuthHandler;
 import android.webkit.MimeTypeMap;
@@ -418,6 +420,7 @@ public class SystemWebViewClient extends WebViewClient {
         return false;
     }
 
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @Override
     public WebResourceResponse shouldInterceptRequest(WebView view, WebResourceRequest request) {
         return this.assetLoader.shouldInterceptRequest(request.getUrl());
