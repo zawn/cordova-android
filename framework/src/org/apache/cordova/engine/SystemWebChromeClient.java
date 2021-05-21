@@ -269,4 +269,15 @@ public class SystemWebChromeClient extends WebChromeClient {
     public void destroyLastDialog(){
         dialogsHelper.destroyLastDialog();
     }
+
+
+    @Override
+    public void onProgressChanged(WebView view, int newProgress) {
+        parentEngine.pluginManager.postMessage("onProgressChanged", newProgress);
+    }
+
+    @Override
+    public void onReceivedTitle(WebView view, String title) {
+        parentEngine.pluginManager.postMessage("onReceivedTitle", title);
+    }
 }
