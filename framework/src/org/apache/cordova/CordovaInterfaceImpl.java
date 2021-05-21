@@ -28,6 +28,7 @@ import android.os.Bundle;
 import android.util.Pair;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -228,18 +229,17 @@ public class CordovaInterfaceImpl implements CordovaInterface {
         permissions[0] = permission;
         requestPermissions(plugin, requestCode, permissions);
     }
-
-        @SuppressLint("NewApi")
+    
     public void requestPermissions(CordovaPlugin plugin, int requestCode, String [] permissions) {
         int mappedRequestCode = permissionResultCallbacks.registerCallback(plugin, requestCode);
-        getActivity().requestPermissions(permissions, mappedRequestCode);
+        ActivityCompat.requestPermissions(getActivity(),permissions, mappedRequestCode);
     }
 
     public boolean hasPermission(String permission)
     {
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
         {
-            int result = activity.checkSelfPermission(permission);
+            int result = ActivityCompat.checkSelfPermission(getActivity(),permission);
             return PackageManager.PERMISSION_GRANTED == result;
         }
         else
